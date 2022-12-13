@@ -1,10 +1,9 @@
-import string
 import random
 
 
 def encriptar(texto, clave):
-    letters = string.ascii_letters
-    letters = letters + '0123456789.,?:;'
+    with open('simbolos.txt', 'r') as filein:
+        letters = filein.read()
 
     numerico, nuevo_orden, resultado = [], [], []
 
@@ -29,8 +28,8 @@ def encriptar(texto, clave):
 
 
 def desencriptar(texto, clave):
-    letters = string.ascii_letters
-    letters = letters + '0123456789.,?:;'
+    with open('simbolos.txt', 'r') as filein:
+        letters = filein.read()
     numerico, viejo_orden, resultado = [], [], []
     for i in texto:
         numerico.append(letters.find(i))
@@ -49,15 +48,3 @@ def desencriptar(texto, clave):
     desencriptado = [letters[m] for m in resultado]
 
     return '-'.join(desencriptado)
-
-
-texto = "hace dos letraaaas iguaaaaaal?"
-clave = 'prueba'
-
-
-encripted = encriptar(texto, clave)
-encripted
-
-
-desencriptado = desencriptar(encripted, "prueba")
-desencriptado
